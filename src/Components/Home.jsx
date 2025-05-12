@@ -5,7 +5,7 @@ import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import Tooltip from "@mui/material/Tooltip";
 import Box from "@mui/material/Box";
-import BMICalculator from "./claude";
+import BMICalculator from "./character";
 import BMIDetailsForm from "./BMIDetailsForm";
 
 export default function Home() {
