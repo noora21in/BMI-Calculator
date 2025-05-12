@@ -1,7 +1,7 @@
 
 
 import "./App.css";
-import Home from "./Components/home";
+import Home from "./Components/Home";
 import HumanModel from "./Components/HumanModel";
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
     <>
    
       <Home/>
-      <HumanModel />
+   
     </>
   );
 }
