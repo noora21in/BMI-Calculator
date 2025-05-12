@@ -1,8 +1,7 @@
 
 
 import "./App.css";
-import Home from "./Components/Home";
-import HumanModel from "./Components/HumanModel";
+import Home from "./Components/home";
 
 function App() {
   return (

@@ -17,21 +17,21 @@ const Human = memo(({ height, weight }) => {
     <primitive
       object={scene}
       ref={ref}
-      scale={[scaleX * 2.3, scaleY * 2.3, scaleZ * 2.3]}
+      scale={[scaleX * 1.8, scaleY * 1.8, scaleZ * 1.8]}
       position={[0, -2, 0]}
       rotation={[0.1, 0, 0]}
     />
   );
 });
 
-export default function HumanModel() {
-  const [height, setHeight] = useState(145);
-  const [weight, setWeight] = useState(55);
-
+export default function HumanModel({ bmiDetails }) {
   return (
     <>
-    
-
+      <h1>
+        BMI : {bmiDetails.bmi}You are
+        <span className="capitalize">{bmiDetails.bmiCategory}</span> and 
+        your body fat is {bmiDetails.bodyFat} %
+      </h1>
       <Canvas
         style={{ height: "100vh", background: "transparent" }}
         camera={{ position: [0, 1.5, 4], fov: 80 }}
@@ -40,7 +40,7 @@ export default function HumanModel() {
         <directionalLight position={[2, 2, 5]} intensity={1} />
         <OrbitControls target={[0, 1, 0]} />
         <Suspense fallback={<Loader />}>
-          <Human height={height} weight={weight} />
+          <Human height={bmiDetails.height} weight={bmiDetails.weight} />
         </Suspense>
       </Canvas>
     </>

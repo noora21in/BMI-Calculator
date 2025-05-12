@@ -107,7 +107,7 @@ export default function BMICalculator() {
         <div className="space-y-2">
           <div className="flex justify-between">
             <label className="font-medium">Height: {height} cm</label>
-            <span className="text-sm text-gray-500">{Math.round(height / 30.48)} ft {Math.round((height % 30.48) / 2.54)} in</span>
+            <span className="text-sm text-gray-500">{Math.floor(height / 30.48)} ft {Math.floor((height % 30.48) / 2.54)} in</span>
           </div>
           <div className="relative h-12 bg-gray-200 rounded-lg">
             <div 
