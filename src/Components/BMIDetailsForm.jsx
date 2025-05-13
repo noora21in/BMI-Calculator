@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { IoIosMale, IoIosFemale } from "react-icons/io";
 
-function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
+function BMIDetailsForm({ setBmiDetails, bmiDetails ,initalValues}) {
   const [genderSelected, setGenderSelected] = useState("left");
 
   const getRadius = () => {
@@ -47,7 +47,7 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
   return (
     <>
       <main
-        className="flex flex-col items-center gap-6 p-6 w-full max-w-md mx-auto rounded-2xl shadow-lg"
+        className="flex flex-col items-center gap-6 py-9 px-16 w-full max-w-xl mx-auto rounded-2xl shadow-lg"
         style={{ backgroundColor: "#221d31", border: "2px solid #392e49" }}
       >
         {/* Gender Toggle */}
@@ -62,10 +62,9 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
             }}
           >
             <div
-              className={`absolute top-0 w-1/2 h-full transition-all duration-300 z-0 ${getRadius()}`}
+              className={`absolute top-0 w-1/2 h-full transition-all duration-300 z-0 bg-[#5b428c] ${getRadius()}`}
               style={{
                 left: genderSelected === "female" ? "0%" : "50%",
-                backgroundColor: "#5b428c",
               }}
             />
             <button
@@ -88,8 +87,7 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
         {/* Age */}
         <section className="w-full">
           <label className="block text-md font-medium text-white mb-2">
-            Age :{" "}
-            <span className="text-purple-300 ml-1"> {bmiDetails.age}</span>{" "}
+            Age :<span className="text-purple-300 ml-1"> {bmiDetails.age}</span>{" "}
             years
           </label>
           <div
@@ -104,11 +102,11 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
               {Array.from({ length: 7 }).map((_, i) => (
                 <div
                   key={i}
-                  className="rounded-full border-2"
+                  className="rounded-full border-2 hover:opacity-1"
                   style={{
                     width: `${i * 4 + 12}px`,
                     height: `${i * 4 + 12}px`,
-                    opacity: bmiDetails.age > i * 10 + 10 ? 1 : 0.3,
+                    opacity: bmiDetails.age > i * 10 + 10 ? 1 : 0.5,
                     borderColor: "#5b428c",
                   }}
                 ></div>
@@ -213,11 +211,15 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
             </div>
             <div
               className="absolute inset-y-0 left-0 rounded-l-lg opacity-60"
-              style={{ width: `${((bmiDetails.weight - 30) / 120) * 100}%` ,backgroundColor:'rgb(81 63 117)'}}
+              style={{
+                width: `${((bmiDetails.weight - 30) / 120) * 100}%`,
+                backgroundColor: "rgb(81 63 117)",
+              }}
             ></div>
             <div
-              className="absolute z-10 w-4 h-full bg-red-500 border-2 border-white rounded"
+              className="absolute z-10 w-2.5 h-full rounded"
               style={{
+                backgroundColor: "rgb(121 121 121)",
                 left: `calc(${((bmiDetails.weight - 30) / 120) * 100}% - 8px)`,
               }}
             ></div>
@@ -232,6 +234,20 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails }) {
             />
           </div>
         </section>
+        <section className="flex">
+        <button
+          className="mt-4 px-6 py-2 rounded-xl text-white font-medium transition-all duration-300"
+          style={{
+            backgroundColor: "#5b428c",
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 #090b0b, 0 1px 2px rgba(0,0,0,0.3)",
+          }}
+          onClick={()=>setBmiDetails(initalValues)}
+        >
+          Reset All
+        </button>
+        </section>
+    
       </main>
     </>
   );

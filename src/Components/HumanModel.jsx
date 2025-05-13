@@ -1,7 +1,7 @@
 import React, { useRef, useState, Suspense, memo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
-import Loader from "./Loader";
+import Spinner from "./Spinner";
 
 useGLTF.preload("/model.glb"); //preloading to reduce the initial load time
 
@@ -17,7 +17,7 @@ const Human = memo(({ height, weight }) => {
     <primitive
       object={scene}
       ref={ref}
-      scale={[scaleX * 1.8, scaleY * 1.8, scaleZ * 1.8]}
+      scale={[scaleX * 2.4, scaleY * 2.4, scaleZ * 2.4]}
       position={[0, -2, 0]}
       rotation={[0.1, 0, 0]}
     />
@@ -27,22 +27,28 @@ const Human = memo(({ height, weight }) => {
 export default function HumanModel({ bmiDetails }) {
   return (
     <>
-      <h1>
-        BMI : {bmiDetails.bmi}You are
-        <span className="capitalize">{bmiDetails.bmiCategory}</span> and 
-        your body fat is {bmiDetails.bodyFat} %
-      </h1>
-      <Canvas
-        style={{ height: "100vh", background: "transparent" }}
-        camera={{ position: [0, 1.5, 4], fov: 80 }}
-      >
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[2, 2, 5]} intensity={1} />
-        <OrbitControls target={[0, 1, 0]} />
-        <Suspense fallback={<Loader />}>
-          <Human height={bmiDetails.height} weight={bmiDetails.weight} />
-        </Suspense>
-      </Canvas>
+      <main>
+        <h1>
+          BMI : {bmiDetails.bmi}You are
+          <span className="capitalize">{bmiDetails.bmiCategory}</span> and your
+          body fat is {bmiDetails.bodyFat} %
+        </h1>
+        <Canvas
+          style={{ height: "60vh", background: "transparent" }}
+          camera={{ position: [0, 1.5, 4], fov: 80 }}
+        >
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[2, 2, 5]} intensity={1} />
+          <OrbitControls target={[0, 1, 0]} />
+          <Suspense fallback={<Spinner />}>
+            <Human
+              key={`${bmiDetails.height}-${bmiDetails.weight}`}
+              height={bmiDetails.height}
+              weight={bmiDetails.weight}
+            />
+          </Suspense>
+        </Canvas>
+      </main>
     </>
   );
 }
