@@ -1,4 +1,4 @@
-import React, { useRef, useState, Suspense, memo } from "react";
+import React, { useRef, useState, Suspense, memo, useEffect } from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import Spinner from "./Spinner";
@@ -25,6 +25,12 @@ const Human = memo(({ height, weight }) => {
 });
 
 export default function HumanModel({ bmiDetails }) {
+  const [showModel, setShowModel] = useState(false);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowModel(true);
+    }, 1500);
+  }, []);
   return (
     <>
       <main>
@@ -40,13 +46,17 @@ export default function HumanModel({ bmiDetails }) {
           <ambientLight intensity={0.6} />
           <directionalLight position={[2, 2, 5]} intensity={1} />
           <OrbitControls target={[0, 1, 0]} />
-          <Suspense fallback={<Spinner />}>
-            <Human
-              key={`${bmiDetails.height}-${bmiDetails.weight}`}
-              height={bmiDetails.height}
-              weight={bmiDetails.weight}
-            />
-          </Suspense>
+          {!showModel ? (
+            <Spinner />
+          ) : (
+            <Suspense fallback={<Spinner />}>
+              <Human
+                key={`${bmiDetails.height}-${bmiDetails.weight}`}
+                height={bmiDetails.height}
+                weight={bmiDetails.weight}
+              />
+            </Suspense>
+          )}
         </Canvas>
       </main>
     </>
