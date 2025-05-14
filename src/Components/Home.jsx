@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import HumanModel from "./HumanModel";
 import BMIDetailsForm from "./BMIDetailsForm";
+import BMIHomepage from '../routes/Routes'
 
 const initalValues = {
   height: 173,
@@ -16,6 +17,7 @@ export default function Home() {
   const [bmiDetails, setBmiDetails] = useState(initalValues);
   return (
     <main>
+      <BMIHomepage />
       <h1 className="text-2xl text-white font-medium py-6 px-8">
         Calculate your BMI and Visualize your Body Shape
       </h1>
