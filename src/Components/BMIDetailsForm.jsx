@@ -11,7 +11,7 @@ function BMIDetailsForm({ setBmiDetails, bmiDetails ,initalValues}) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setBmiDetails((prev) => ({ ...prev, [name]: parseInt(value) }));
-    console.log('bmi details',bmiDetails);
+    // console.log('bmi details',bmiDetails);
   };
 
   const handleGender = (e) => {

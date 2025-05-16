@@ -34,11 +34,6 @@ export default function HumanModel({ bmiDetails }) {
   return (
     <>
       <main>
-        <h1>
-          BMI : {bmiDetails.bmi}You are
-          <span className="capitalize">{bmiDetails.bmiCategory}</span> and your
-          body fat is {bmiDetails.bodyFat} %
-        </h1>
         <Canvas
           style={{ height: "60vh", background: "transparent" }}
           camera={{ position: [0, 1.5, 4], fov: 80 }}

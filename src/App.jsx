@@ -1,10 +1,10 @@
 import "./App.css";
-import Home from "./Components/home";
+import BMIHome from "./Components/BMIHome";
 
 function App() {
   return (
     <>
-        <Home />
+        <BMIHome />
     </>
   );
 }
